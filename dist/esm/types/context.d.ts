@@ -1,0 +1,10 @@
+import React from 'react';
+export declare const NodeTypesContext: React.Context<any>;
+export declare const PortTypesContext: React.Context<any>;
+export declare const NodeDispatchContext: React.Context<any>;
+export declare const ConnectionRecalculateContext: React.Context<any>;
+export declare const ContextContext: React.Context<any>;
+export declare const StageContext: React.Context<any>;
+export declare const CacheContext: React.Context<any>;
+export declare const RecalculateStageRectContext: React.Context<any>;
+export declare const EditorIdContext: React.Context<any>;

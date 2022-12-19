@@ -3,6 +3,7 @@ import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
 import dts from "rollup-plugin-dts";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
+import css from "rollup-plugin-import-css";
 import packageJson from './package.json' assert { type: "json" };
 import { fileURLToPath } from 'url';
 //https://github.com/rollup/plugins/issues/1366
@@ -12,7 +13,7 @@ import terser from "@rollup/plugin-terser";
 
 export default [
   {
-    input: "src/index.ts",
+    input: "src/index.tsx",
     output: [
       {
         file: packageJson.main,
@@ -26,13 +27,14 @@ export default [
       },
     ],
     plugins: [
+      css(),
       peerDepsExternal(),
       resolve(),
       commonjs(),
       typescript({ tsconfig: "./tsconfig.json" }),
-      terser(),
+      // terser(),
     ],
-    external: ["react", "react-dom"],
+    external: [],
   },
   {
     input: "dist/esm/types/index.d.ts",
