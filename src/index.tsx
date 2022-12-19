@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import Stage from "./components/Stage/Stage";
 import Node from "./components/Node/Node";
 import Comment from "./components/Comment/Comment";
@@ -100,9 +100,9 @@ const NodeEditorInner = (
     }
   }, [shouldRecalculateConnections, recalculateConnections]);
 
-  const triggerRecalculation = () => {
+  const triggerRecalculation = useCallback(() => {
     setShouldRecalculateConnections(true);
-  };
+  }, []);
 
   React.useImperativeHandle(ref, () => ({
     getNodes: () => {

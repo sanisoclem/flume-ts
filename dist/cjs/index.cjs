@@ -25104,9 +25104,9 @@ var NodeEditorInner = function (_a, ref) {
             setShouldRecalculateConnections(false);
         }
     }, [shouldRecalculateConnections, recalculateConnections]);
-    var triggerRecalculation = function () {
+    var triggerRecalculation = React.useCallback(function () {
         setShouldRecalculateConnections(true);
-    };
+    }, []);
     React.useImperativeHandle(ref, function () { return ({
         getNodes: function () {
             return nodes;

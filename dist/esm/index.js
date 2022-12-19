@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import ReactDOM from 'react-dom';
 import require$$0 from 'react-is';
 
@@ -25102,9 +25102,9 @@ var NodeEditorInner = function (_a, ref) {
             setShouldRecalculateConnections(false);
         }
     }, [shouldRecalculateConnections, recalculateConnections]);
-    var triggerRecalculation = function () {
+    var triggerRecalculation = useCallback(function () {
         setShouldRecalculateConnections(true);
-    };
+    }, []);
     React.useImperativeHandle(ref, function () { return ({
         getNodes: function () {
             return nodes;
