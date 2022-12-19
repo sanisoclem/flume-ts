@@ -2,8 +2,10 @@ import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
 import dts from "rollup-plugin-dts";
+import postcss from 'rollup-plugin-postcss'
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
-import css from "rollup-plugin-import-css";
+import svgr from '@svgr/rollup'
+import postCssNested from'postcss-nested';
 import packageJson from './package.json' assert { type: "json" };
 import { fileURLToPath } from 'url';
 //https://github.com/rollup/plugins/issues/1366
@@ -27,9 +29,13 @@ export default [
       },
     ],
     plugins: [
-      css(),
       peerDepsExternal(),
+      postcss({
+        modules: true,
+        plugins: [postCssNested]
+      }),
       resolve(),
+      svgr(),
       commonjs(),
       typescript({ tsconfig: "./tsconfig.json" }),
       // terser(),
