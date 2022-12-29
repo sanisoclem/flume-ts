@@ -111,7 +111,7 @@ const removeNode = (startNodes: any, nodeId: any) => {
   return nodes;
 };
 
-const reconcileNodes = (initialNodes: any, nodeTypes: any, portTypes: any, context: any) => {
+const reconcileNodes = (initialNodes: Record<string,any>, nodeTypes: any, portTypes: any, context: any) => {
   let nodes = { ...initialNodes };
 
   // Delete extraneous nodes

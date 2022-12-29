@@ -38,9 +38,9 @@ export default [
       svgr(),
       commonjs(),
       typescript({ tsconfig: "./tsconfig.json" }),
-      // terser(),
+      terser(),
     ],
-    external: [],
+    external: ["react", "react-dom"],
   },
   {
     input: "dist/esm/types/index.d.ts",

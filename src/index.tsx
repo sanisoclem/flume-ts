@@ -74,10 +74,7 @@ const NodeEditorInner = (
   React.useEffect(() => {
     dispatchNodes({ type: "HYDRATE_DEFAULT_NODES" });
   }, []);
-  const [
-    shouldRecalculateConnections,
-    setShouldRecalculateConnections
-  ] = React.useState(true);
+  const initialRecalculateConnectionsDoneRef = React.useRef(false);
   const [stageState, dispatchStageState] = React.useReducer(stageReducer, {
     scale: typeof initialScale === "number" ? clamp(initialScale, 0.1, 7) : 1,
     translate: { x: 0, y: 0 }
@@ -94,14 +91,14 @@ const NodeEditorInner = (
   };
 
   React.useLayoutEffect(() => {
-    if (shouldRecalculateConnections) {
+    if (!initialRecalculateConnectionsDoneRef.current) {
+      initialRecalculateConnectionsDoneRef.current = true;
       recalculateConnections();
-      setShouldRecalculateConnections(false);
     }
-  }, [shouldRecalculateConnections, recalculateConnections]);
+  }, [recalculateConnections]);
 
   const triggerRecalculation = useCallback(() => {
-    setShouldRecalculateConnections(true);
+    recalculateConnections();
   }, []);
 
   React.useImperativeHandle(ref, () => ({
